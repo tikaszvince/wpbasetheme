@@ -1,11 +1,24 @@
 
-  <footer class="footer" role="contentinfo">
-    <div id="inner-footer" class="wrap clearfix">
+  <footer class="footer page-footer" role="contentinfo">
+    <?php if ( is_active_sidebar('footerwidgets') ) : ?>
+      <aside class="footer-widgets row-fluid">
+        <?php dynamic_sidebar( 'footerwidgets' ); ?>
+      </aside>
+    <?php endif; ?>
+
+    <section class="page-closer clearfix">
       <nav role="navigation">
         <?php theme_footer_links(); ?>
       </nav>
-      <p class="source-org copyright">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>.</p>
-    </div> <!-- end #inner-footer -->
+      <div class="source-org copyright">
+        Copyright &copy; <?php echo date('Y') ?>. <a href="<?php echo home_url(); ?>" rel="nofollow"><?php bloginfo('name') ?></a>
+        &middot; Minden jog fenntartva.
+      </div>
+
+      <div class="fingerprint">
+        <?php fingerprint_4image() ?>
+      </div>
+    </section>
   </footer> <!-- end footer -->
 
 </div> <!-- end #container -->

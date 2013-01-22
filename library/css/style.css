@@ -1,0 +1,189 @@
+
+/***** Layout */
+
+/**** defaults */
+:focus {outline:none;}
+::-moz-focus-inner,
+:-moz-any-link:focus {
+  -moz-outline-style: none;
+  outline: none;
+}
+
+.alignleft {
+  float:left;
+  margin-right:20px;
+}
+.alignright {
+  float:right;
+  margin-left:20px;
+}
+.aligncenter {
+  display: block;
+  margin: 10px auto;
+}
+img.alignleft {
+  float:left;
+  margin: 0 20px 15px 0;
+  padding: 0;
+  max-width: 48%;
+}
+
+img.alignright {
+  float:right;
+  margin: 0 0 15px 20px;
+  padding: 0;
+  max-width: 48%;
+}
+img.aligncenter {
+  display: block;
+  padding: 0;
+  max-width: 100%;
+  margin: 15px auto;
+}
+.wp-caption {
+  max-width: 100%;
+}
+
+/**** Links */
+.links {
+  margin:0;
+  padding:0;
+  list-style-type: none;
+}
+.links li {
+  display: inline;
+  border-left: 1px solid #414141;
+  padding: 0 8px;
+}
+.links li:first-child {
+  border-left: none;
+}
+.links a {
+  padding:0;
+}
+
+/**** social */
+.social {
+  width:25px;
+  height:26px;
+  float:left;
+  overflow: hidden;
+  position: relative;
+  margin: 0;
+  text-indent: 30px;
+}
+.social i {
+  background: transparent url(../../img/sprite.png) no-repeat;
+  width:25px;
+  height:26px;
+  position: absolute;
+  top:0;
+  left:0;
+}
+.social-rss i { background-position: 0 1px; }
+.social-rss:hover i { background-position: 0 -25px; }
+.social-facebook i {background-position: -50px 1px;}
+.social-facebook:hover i {background-position: -50px -25px;}
+.social-twitter i {background-position: -100px 1px;}
+.social-twitter:hover i {background-position: -100px -25px;}
+.social-gplus i {background-position: -25px 1px;}
+.social-gplus:hover i {background-position: -25px -25px;}
+.social-vimeo i {background-position: -125px 1px;}
+.social-vimeo:hover i {background-position: -125px -25px;}
+.social-email i {background-position: -75px 1px;}
+.social-email:hover i {background-position: -75px -25px;}
+
+/**** searchform */
+.search {}
+.searchform {
+  margin: 12px 0;
+  border: 1px solid #c0bfbf;
+  width: 250px;
+}
+.searchform input,
+.searchform input:focus {
+  border:none;
+  outline: none;
+  -webkit-border-radius:0;
+     -moz-border-radius:0;
+          border-radius:0;
+  color:#000;
+  -webkit-box-shadow:none;
+     -moz-box-shadow:none;
+          box-shadow:none;
+  float: left;
+  font-size: 13px;
+  margin:0;
+  height: 22px;
+  line-height: 22px;
+}
+.searchform button {
+  border:none;
+  background: transparent;
+  color:#000;
+  text-indent: 30px;
+  width: 26px;
+  height: 26px;
+  overflow: hidden;
+  position: relative;
+  margin:0;
+  padding:0;
+  float: left;
+}
+.searchform button i {
+  position: absolute;
+  top: 5px;
+  left:5px;
+  width: 16px;
+  height: 16px;
+}
+
+
+/**** 4image vcard */
+#hcard-4image .copy-name,
+#hcard-4image .org,
+#hcard-4image .photo,
+#hcard-4image address { display:none;}
+#hcard-4image {
+  font-family: 'Trebuchet MS', Helvetica, sans-serif;
+  float: right;
+  width: 185px;
+  overflow: hidden;
+}
+#hcard-4image .url,
+#hcard-4image .url:hover {
+  color:#aaa;
+  margin:0;
+  float:right;
+  display:block;
+  font-size:11px;
+  height:22px;
+  line-height:11px;
+  padding:0 0 0 25px;
+  text-align:left;
+  text-transform:uppercase;
+  text-decoration:none;
+  background:transparent url(../images/4image.18.png) no-repeat scroll 0 -20px;
+}
+#hcard-4image .url .a,
+#hcard-4image .url:hover .a {
+  display:block;
+  float:left;
+  white-space:nowrap;
+  font-weight:bold;
+}
+#hcard-4image .url .b,
+#hcard-4image .url:hover .b {
+  text-transform:lowercase;
+  font-size:9px;
+  clear:left;
+  display:block;
+}
+#hcard-4image .url {}
+#hcard-4image .url .a {}
+#hcard-4image .url .b {}
+#hcard-4image .url:hover {}
+#hcard-4image .url:hover .a {}
+#hcard-4image .url:hover .b {}
+
+/* end */

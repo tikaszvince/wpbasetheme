@@ -24,8 +24,8 @@ function theme_comments($comment, $args, $depth) {
       ?>
       <img data-gravatar="http://www.gravatar.com/avatar/<?php echo md5($bgauthemail); ?>?s=32" class="load-gravatar avatar avatar-48 photo" height="32" width="32" src="<?php echo get_template_directory_uri(); ?>/library/images/nothing.gif" />
       <!-- end custom gravatar call -->
-      <?php printf(__('<cite class="fn">%s</cite>', 'theme'), get_comment_author_link()) ?>
-      <time datetime="<?php echo comment_time('Y-m-j'); ?>"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>"><?php comment_time(__('F jS, Y', 'theme')); ?> </a></time>
+      <?php printf('<cite class="fn">%s</cite>', get_comment_author_link()) ?>
+      <time datetime="<?php echo comment_time('Y-m-d'); ?>"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>"><?php comment_time(__('l, F j, Y', 'theme')); ?> </a></time>
       <?php edit_comment_link(__('(Edit)', 'theme'),'  ','') ?>
     </header>
     <?php if ($comment->comment_approved == '0') : ?>

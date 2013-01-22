@@ -21,7 +21,7 @@ if ( post_password_required() ) { ?>
       __('<span>No</span> Responses', 'theme')
       ,__('<span>One</span> Response', 'theme')
       ,_n('<span>%</span> Response', '<span>%</span> Responses', get_comments_number(),'theme')
-    );?> to &#8220;<?php the_title(); ?>&#8221;
+    );?>
   </h3>
 
   <nav id="comment-nav">

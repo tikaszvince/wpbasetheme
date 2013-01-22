@@ -2,6 +2,7 @@
 add_action('after_setup_theme','theme_start', 15);
 
 function theme_start() {
+  add_editor_style();
   // launching operation cleanup
   add_action('init', 'theme_head_cleanup');
   // remove WP version from RSS
@@ -99,18 +100,19 @@ function theme_head_html_cleanup($tag, $handle) {
 // loading modernizr and jquery, and reply script
 function theme_scripts_and_styles() {
   if (!is_admin()) {
+    global $wp_scripts;
     wp_deregister_script('jquery');
+    foreach($wp_scripts->registered as $handle => $script) {
+      $wp_scripts->add_data($handle, 'group', 1);
+    }
+
     wp_register_script('jquery','//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',array(),'1.8.3',true);
     $_cssDirUri = get_stylesheet_directory_uri();
     // modernizr (without media query polyfill)
     wp_register_script('theme-modernizr', $_cssDirUri.'/library/js/libs/modernizr.custom.min.js', array(), '2.6.2', false);
     // Bootstrap js
     wp_register_script('bootstrap-js', $_cssDirUri.'/bootstrap/js/bootstrap.min.js', array('jquery'), '2.2.2', true);
-    // register bootstrap CSS
-    wp_register_style('bootstrap', $_cssDirUri.'/bootstrap/css/bootstrap.min.css', array(), '2.2.2', 'all');
-    wp_register_style('bootstrap-responsive', $_cssDirUri.'/bootstrap/css/bootstrap-responsive.min.css', array(), '2.2.2', 'all');
-    // register main stylesheet
-    wp_register_style('theme-stylesheet', $_cssDirUri.'/library/css/style.css', array(), '', 'all');
+    theme_styles::register();
     // ie-only style sheet
     wp_register_style('theme-ie-only', $_cssDirUri.'/library/css/ie.css', array(), '');
     // comment reply script for threaded comments
@@ -123,9 +125,7 @@ function theme_scripts_and_styles() {
 
     // enqueue styles and scripts
     wp_enqueue_script('theme-modernizr');
-    wp_enqueue_style('bootstrap');
-    wp_enqueue_style('bootstrap-responsive');
-    wp_enqueue_style('theme-stylesheet');
+    theme_styles::enqueue();
     wp_enqueue_style('theme-ie-only');
 
     /*
@@ -156,15 +156,6 @@ function theme_theme_support() {
   // default thumb size
   set_post_thumbnail_size(125, 125, true);
 
-  // wp custom background (thx to @bransonwerner for update)
-  add_theme_support('custom-background', array(
-    'default-image' => '',  // background image default
-    'default-color' => '', // background color default (dont add the #)
-    'wp-head-callback' => '_custom_background_cb',
-    'admin-head-callback' => '',
-    'admin-preview-callback' => ''
-  ));
-
   // rss thingy
   add_theme_support('automatic-feed-links');
 
@@ -191,6 +182,9 @@ function theme_theme_support() {
     'main-nav' => __('The Main Menu', 'theme'), // main nav in header
     'footer-links' => __('Footer Links', 'theme') // secondary nav in footer
   ));
+  if ( function_exists('theme_additional_theme_support') ) {
+    theme_additional_theme_support();
+  }
 }
 
 // the main menu
@@ -218,7 +212,7 @@ function theme_footer_links() {
     'container' => '', // remove nav container
     'container_class' => 'footer-links clearfix', // class of container (should you choose to use it)
     'menu' => __('Footer Links', 'theme'), // nav name
-    'menu_class' => 'nav footer-nav clearfix', // adding custom nav class
+    'menu_class' => 'links footer-nav clearfix', // adding custom nav class
     'theme_location' => 'footer-links', // where it's located in the theme
     'before' => '', // before the menu
     'after' => '', // after the menu
@@ -261,18 +255,213 @@ function theme_excerpt_more($more) {
 
 // This is a modified the_author_posts_link() which just returns the link.
 // This is necessary to allow usage of the usual l10n process with printf().
-function theme_get_the_author_posts_link() {
-  global $authordata;
-  if ( !is_object( $authordata ) ) {
+function theme_get_the_author_posts_link($author = null) {
+  if ( !isset($author) ) {
+    global $authordata;
+    $author = $authordata;
+  }
+  if ( !is_object( $author ) ) {
     return false;
   }
   $link = sprintf(
-    '<a href="%1$s" title="%2$s" rel="author">%3$s</a>',
-    get_author_posts_url( $authordata->ID, $authordata->user_nicename ),
+    '<a href="%1$s" title="%2$s" rel="author" class="meta author"><i></i>%3$s</a>',
+    get_author_posts_url( $author->ID, $author->user_nicename ),
     esc_attr( sprintf( __( 'Posts by %s' ), get_the_author() ) ), // No further l10n needed, core will take care of this one
     get_the_author()
   );
   return $link;
+}
+
+function theme_get_tag_lists($post_id = 0) {
+  if ( $_tagList = get_the_tag_list('<i></i>', ', ', '', $post_id) ) {
+    return
+      '<span class="meta tags" title="'.__('Tags').'">'
+        .$_tagList
+      ."</span>";
+  }
+  return '';
+}
+
+function theme_get_category_list($post_id = 0) {
+  if ( $categories = get_the_category($post_id) ) {
+    $_cats = array();
+    foreach ( $categories as $cat) {
+      $_cats[] =
+        '<a href="'.esc_url(get_category_link($cat->term_id)).'" '.
+          'class="meta category" '.
+          'title="'.esc_attr(sprintf(__("View all posts in %s"),$cat->name)).'" '.
+          'rel="category"><i></i>'.$cat->name."</a>\n";
+    }
+    return join(', ',$_cats);
+  }
+  return '';
+}
+
+class theme_styles {
+
+  static protected $css  = array(
+    // register bootstrap CSS
+    'bootstrap' => array(
+      'name' => 'bootstrap',
+      'path' => '/bootstrap/css/bootstrap.min.css',
+      'dependency' => array(),
+      'version' => '2.2.2',
+      'media' => 'all'
+    ),
+    'bootstrap-responsive' => array(
+      'name' => 'bootstrap-responsive',
+      'path' => '/bootstrap/css/bootstrap-responsive.min.css',
+      'dependency' => array(),
+      'version' => '2.2.2',
+      'media' => 'all'
+    ),
+    'theme-bootstrap' => array(
+      'name' => 'theme-bootstrap',
+      'path' => '/library/css/bootstrap-mods.css',
+      'dependency' => array(),
+      'version' => '',
+      'media' => 'all'
+    ),
+  // register main stylesheet
+    'theme-stylesheet' => array(
+      'name' => 'theme-stylesheet',
+      'path' => '/library/css/style.css',
+      'dependency' => array(),
+      'version' => '',
+      'media' => 'all'
+    ),
+    'theme-responsive' => array(
+      'name' => 'theme-responsive',
+      'path' => '/library/css/responsive.css',
+      'dependency' => array(),
+      'version' => '',
+      'media' => 'all'
+    ),
+  );
+
+  static protected $registered = array();
+
+  static public function add($name, $path, $dependency, $version, $media) {
+    self::$css[$name] = array(
+      'name' => $name,
+      'path' => $path,
+      'dependency' => $dependency,
+      'version' => $version,
+      'media' => $media
+    );
+    self::_do_register($name, self::$css[$name]);
+  }
+
+  static public function register() {
+    $options = get_option('theme_options');
+    if ( !$options['optimizeCss'] ) {
+      self::_register_all();
+    }
+    else {
+      self::_register_optimized();
+    }
+  }
+
+  static public function enqueue() {
+    foreach( self::$registered as $name ) {
+      wp_enqueue_style($name);
+    }
+  }
+
+  static protected function _register_all() {
+    foreach( self::$css as $name => $css ) {
+      if ( isset(self::$css[$name]['registered']) && self::$css[$name]['registered'] ) {
+        continue;
+      }
+      self::_do_register($name, $css);
+    }
+  }
+
+  static protected function _do_register($name, $css) {
+    $_cssDirUri = get_stylesheet_directory_uri();
+    wp_register_style(
+      $name,
+      $_cssDirUri.$css['path'],
+      $css['dependency'],
+      $css['version'],
+      $css['media']
+    );
+    self::$registered[] = $name;
+    self::$css[$name]['registered'] = true;
+  }
+
+  static protected function _register_optimized() {
+    $_cssDir = get_stylesheet_directory();
+    $_cssDirUri = get_stylesheet_directory_uri();
+    $_minified_file_path = '/library/css/_min_style.css';
+    $_minified_file = $_cssDir.$_minified_file_path;
+    $_minDir = dirname($_minified_file);
+    if ( !$_minDir = self::_get_min_dir($_minDir) ) {
+      self::_register_all();
+      return false;
+    }
+
+    $_has_minified = is_file($_minDir.'/style.css');
+    $_last_mod = filemtime($_minified_file);
+    $_modified = true;//self::_source_modified_since($_last_mod);
+    if ( !$_has_minified  || $_modified ) {
+      $content = '';
+      foreach( self::$css as $name => $css ) {
+        $content .= file_get_contents($_cssDir.$css['path'])."\n";
+      }
+      $content = self::_compress_content($content);
+      if ( false === file_put_contents($_minified_file, $content) ) {
+        self::_register_all();
+        return false;
+      }
+    }
+
+    wp_register_style(
+      'style',
+      $_cssDirUri.$_minified_file_path,
+      array(),
+      $_last_mod,
+      'all'
+    );
+    self::$registered[] = 'style';
+    return true;
+  }
+
+  static protected function _get_min_dir($_minDir) {
+    if ( !is_dir($_minDir) ) {
+      @mkdir($_minDir, 0777);
+      @chmod($_minDir, 0777);
+    }
+    if (
+      !is_dir($_minDir)
+      || !is_writeable($_minDir)
+    ) {
+      return false;
+    }
+    return $_minDir;
+  }
+
+  static protected function _source_modified_since($since) {
+    $_cssDir = get_stylesheet_directory();
+    foreach( self::$css as $name => $css ) {
+      if ( filemtime($_cssDir.$css['path']) > $since ) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  static protected function _compress_content($content) {
+    // Remove comments
+    $content = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $content);
+    // Remove space after colons
+    $content = str_replace(': ', ':', $content);
+    $content = str_replace(', ', ',', $content);
+    // Remove whitespace
+    $content = str_replace(array("\r\n", "\r", "\n", "\t"), '', $content);
+    $content = str_replace("  ", '', $content);
+    return $content;
+  }
 }
 
 //end

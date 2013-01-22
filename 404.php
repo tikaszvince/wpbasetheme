@@ -1,9 +1,9 @@
 <?php get_header(); ?>
-  <div id="content">
-    <div id="inner-content" class="wrap clearfix">
-      <div id="main" class="eightcol first clearfix" role="main">
-        <?php theme_error_no_post(); ?>
-      </div> <!-- end #main -->
-    </div> <!-- end #inner-content -->
-  </div> <!-- end #content -->
+  <h1 class="page-title"><?php _e('Epic 404 - Article Not Found', 'theme'); ?></h1>
+  <div id="content"><div class="row-fluid">
+    <div id="main" class="span12 first clearfix" role="main">
+      <?php theme_error_no_post(false); ?>
+    </div> <!-- end #main -->
+  </div></div> <!-- end #content -->
+
 <?php get_footer(); ?>

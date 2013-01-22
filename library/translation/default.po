@@ -1,19 +1,19 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: wp theme bones\n"
+"Project-Id-Version: wpbasetheme\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-03-02 22:11+0100\n"
 "PO-Revision-Date: \n"
-"Language-Team: fulgor <frag.fulgor@gmail.com>\n"
-"Language-Team: fulgor <frag.fulgor@gmail.com>\n"
+"Language-Team: fulgor <vince.tikasz@gmail.com>\n"
+"Language-Team: fulgor <vince.tikasz@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-KeywordsList: __;_e;_n\n"
-"X-Poedit-Basepath: /home/fulgor/GIT/bones\n"
-"Last-Translator: \n"
-"X-Poedit-SearchPath-0: /home/fulgor/GIT/bones\n"
+"X-Poedit-Basepath: /home/vince/www/wp3/wp-content/themes/wpbasetheme/library/translation\n"
+"Last-Translator: Vince Tikász <vince.tikasz@gmail.com>\n"
+"X-Poedit-SearchPath-0: /home/vince/www/wp3/wp-content/themes/wpbasetheme/library/translation\n"
 
 #: comments.php:12
 msgid "This post is password protected. Enter the password to view comments."
@@ -37,7 +37,7 @@ msgstr ""
 
 #: comments.php:32
 msgid "to"
-msgstr ""
+msgstr " "
 
 #: comments.php:59
 msgid "Comments are closed."
@@ -80,7 +80,8 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: comments.php:93 comments.php:98
+#: comments.php:93
+#: comments.php:98
 msgid "(required)"
 msgstr ""
 
@@ -125,19 +126,26 @@ msgstr ""
 msgid "Page %s"
 msgstr ""
 
-#: taxonomy-custom_cat.php:22 archive.php:9
+#: taxonomy-custom_cat.php:22
+#: archive.php:9
 msgid "Posts Categorized:"
-msgstr ""
+msgstr ":"
 
-#: taxonomy-custom_cat.php:32 embed-post_meta.php:1 single-custom_type.php:30
+#: taxonomy-custom_cat.php:32
+#: embed-post_meta.php:1
+#: single-custom_type.php:30
 msgid "Posted"
 msgstr ""
 
-#: taxonomy-custom_cat.php:32 embed-post_meta.php:1 single-custom_type.php:30
+#: taxonomy-custom_cat.php:32
+#: embed-post_meta.php:1
+#: single-custom_type.php:30
 msgid "by"
 msgstr ""
 
-#: taxonomy-custom_cat.php:32 embed-post_meta.php:1 single-custom_type.php:30
+#: taxonomy-custom_cat.php:32
+#: embed-post_meta.php:1
+#: single-custom_type.php:30
 msgid "filed under"
 msgstr ""
 
@@ -166,8 +174,7 @@ msgid "Epic 404 - Article Not Found"
 msgstr ""
 
 #: 404.php:17
-msgid ""
-"The article you were looking for was not found, but maybe try looking again!"
+msgid "The article you were looking for was not found, but maybe try looking again!"
 msgstr ""
 
 #: search.php:7
@@ -182,7 +189,8 @@ msgstr ""
 msgid "Posts Tagged:"
 msgstr ""
 
-#: archive.php:17 author.php:8
+#: archive.php:17
+#: author.php:8
 msgid "Posts By:"
 msgstr ""
 
@@ -226,10 +234,6 @@ msgstr ""
 msgid "Newer Entries &raquo;"
 msgstr ""
 
-#: footer.php:9
-msgid "is powered by"
-msgstr ""
-
 #: embed-not_found.php:3
 msgid "Not Found"
 msgstr ""
@@ -246,126 +250,114 @@ msgstr ""
 msgid "Read more &raquo;"
 msgstr ""
 
-#: library/custom-post-type.php:24
-msgid "Custom Types"
+#: archive.php:7
+msgid "Author Archives: %s"
 msgstr ""
 
-#: library/custom-post-type.php:25
-msgid "Custom Post"
+#: archive.php:16
+msgid "Posts Tagged: %s"
 msgstr ""
 
-#: library/custom-post-type.php:26
-msgid "Add New"
+#: archive.php:19
+msgid "Daily Archives: %s"
 msgstr ""
 
-#: library/custom-post-type.php:27
-msgid "Add New Custom Type"
+#: archive.php:22
+msgid "Monthly Archives: %s"
 msgstr ""
 
-#: library/custom-post-type.php:28
-msgid "Edit"
+#: archive.php:25
+msgid "Yearly Archives: %s"
 msgstr ""
 
-#: library/custom-post-type.php:29
-msgid "Edit Post Types"
+#: archive.php:19
+msgid "l, F j, Y"
 msgstr ""
 
-#: library/custom-post-type.php:30
-msgid "New Post Type"
+#: archive.php:22
+msgid "F Y"
 msgstr ""
 
-#: library/custom-post-type.php:31
-msgid "View Post Type"
+#: archive.php:25
+msgid "Y"
 msgstr ""
 
-#: library/custom-post-type.php:32
-msgid "Search Post Type"
+#: comments.php:21
+msgid "<span>No</span> Responses"
 msgstr ""
 
-#: library/custom-post-type.php:33
-msgid "Nothing found in the Database."
+#: comments.php:22
+msgid "<span>One</span> Response"
 msgstr ""
 
-#: library/custom-post-type.php:34
-msgid "Nothing found in Trash"
+#: comments.php:23
+msgid "<span>%</span> Response"
 msgstr ""
 
-#: library/custom-post-type.php:37
-msgid "This is the example custom post type"
+#: comments.php:23
+msgid "<span>%</span> Responses"
 msgstr ""
 
-#: library/custom-post-type.php:73
-msgid "Custom Categories"
+# comments.php:68
+msgid "You must be %1$slogged in%2$s to post a comment."
 msgstr ""
 
-#: library/custom-post-type.php:74
-msgid "Custom Category"
+# loop.php:40
+msgid "More"
 msgstr ""
 
-#: library/custom-post-type.php:75
-msgid "Search Custom Categories"
+# single.php:22
+msgid "Previous post"
 msgstr ""
 
-#: library/custom-post-type.php:76
-msgid "All Custom Categories"
+# single.php:27
+msgid "Next post"
 msgstr ""
 
-#: library/custom-post-type.php:77
-msgid "Parent Custom Category"
+# library/blocks.php:112
+msgid "&laquo; First"
 msgstr ""
 
-#: library/custom-post-type.php:78
-msgid "Parent Custom Category:"
+# library/blocks.php:113
+msgid "&lsaquo; Previous"
 msgstr ""
 
-#: library/custom-post-type.php:79
-msgid "Edit Custom Category"
+# library/blocks.php:114
+msgid "Next &rsaquo;"
 msgstr ""
 
-#: library/custom-post-type.php:80
-msgid "Update Custom Category"
+# library/blocks.php:115
+msgid "Last &raquo;"
 msgstr ""
 
-#: library/custom-post-type.php:81
-msgid "Add New Custom Category"
+# blocks.php:180
+msgid "No Related Posts Yet!"
 msgstr ""
 
-#: library/custom-post-type.php:82
-msgid "New Custom Category Name"
+# library/sidebar.php:8
+msgid "Default sidebar"
 msgstr ""
 
-#: library/custom-post-type.php:95
-msgid "Custom Tag"
+# library/sidebar.php:9
+msgid "The first (primary) sidebar."
 msgstr ""
 
-#: library/custom-post-type.php:96
-msgid "Search Custom Tags"
+# library/sidebar.php:17
+msgid "Footer widgets"
 msgstr ""
 
-#: library/custom-post-type.php:97
-msgid "All Custom Tags"
+# library/sidebar.php:18
+msgid "Widgets in footer area."
 msgstr ""
 
-#: library/custom-post-type.php:98
-msgid "Parent Custom Tag"
+# library/start.php:191
+msgid "The Main Menu"
 msgstr ""
 
-#: library/custom-post-type.php:99
-msgid "Parent Custom Tag:"
+# library/start.php:192
+msgid "Footer Links"
 msgstr ""
 
-#: library/custom-post-type.php:100
-msgid "Edit Custom Tag"
-msgstr ""
-
-#: library/custom-post-type.php:101
-msgid "Update Custom Tag"
-msgstr ""
-
-#: library/custom-post-type.php:102
-msgid "Add New Custom Tag"
-msgstr ""
-
-#: library/custom-post-type.php:103
-msgid "New Custom Tag Name"
+# library/start.php:278
+msgid "Posts by %s"
 msgstr ""

@@ -1,0 +1,357 @@
+/*
+Theme Name: Filmtekercs
+Description: Used to style the TinyMCE editor.
+*/
+
+/* =Tables
+-------------------------------------------------------------- */
+@import "bootstrap/css/bootstrap.min.css";
+@import "library/css/bootstrap-mods.css";
+
+html {
+	font-size: 12px;
+  background: #ededed;
+  padding: 10px;
+}
+html .mceContentBody {
+	max-width: 620px;
+  background: #fff;
+  margin: 0 auto;
+  padding: 10px;
+  *zoom: 1;
+}
+html .post-type-page {
+  max-width: 940px;
+}
+
+html .mceContentBody:before,
+html .mceContentBody:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+html .mceContentBody:after {
+  clear: both;
+}
+
+body {
+	color: #333;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	text-rendering: optimizeLegibility;
+	vertical-align: baseline;
+
+  font-size: 12px;
+  line-height: 1.3;
+  text-align: justify;
+}
+
+
+/* =Headings
+-------------------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: inherit;
+  font-weight: bold;
+  line-height: 20px;
+  color: inherit;
+  text-rendering: optimizelegibility;
+}
+h1, h2, h3 {
+  line-height: 40px;
+}
+h1 {
+	font-size: 38.5px;
+}
+h2 {
+  font-size: 31.5px;
+}
+h3 {
+  font-size: 24.5px;
+}
+h4 {
+  font-size: 17.5px;
+}
+h5 {
+  font-size: 14px;
+}
+h6 {
+  font-size: 11.9px;
+}
+hr {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #fff;
+}
+
+
+/* =Text elements
+-------------------------------------------------------------- */
+
+p {
+  margin: 0 0 10px;
+}
+ul,
+ol {
+  padding: 0;
+  margin: 0 0 10px 25px;
+}
+ul {
+	list-style: disc outside;
+}
+ol {
+	list-style: decimal outside;
+}
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+	margin-bottom: 0;
+}
+li {
+  line-height: 20px;
+}
+
+dl {
+  margin: 12px 0 20px;
+}
+dt, dd {
+  line-height: 20px;
+}
+
+dt {
+	font-weight: bold;
+  margin: 0;
+}
+dd {
+	line-height: 1.714285714;
+  margin: 0 0 0 10px;
+}
+strong {
+	font-weight: bold;
+}
+cite,
+em,
+i {
+	font-style: italic;
+}
+cite {
+	border: none;
+}
+big {
+	font-size: 128.571429%;
+}
+.mceContentBody blockquote {
+  padding: 0 0 0 15px;
+  margin: 0 0 20px;
+  border-left: 5px solid #eee;
+  font-size: 12px;
+}
+.mceContentBody blockquote p {
+  margin-bottom: 0;
+  font-size: inherit;
+  font-weight: 300;
+  line-height: 1.3;
+}
+
+pre {
+	border: 1px solid #ededed;
+	color: #666;
+	font-family: Consolas, Monaco, Lucida Console, monospace;
+	font-size: 12px;
+	font-size: 0.857142857rem;
+	line-height: 1.714285714;
+	margin: 24px 0;
+	margin: 1.714285714rem 0;
+	overflow: auto;
+	padding: 24px;
+	padding: 1.714285714rem;
+}
+code,
+kbd,
+samp,
+var {
+	font-family: Consolas, Monaco, Lucida Console, monospace;
+	font-size: 12px;
+	font-size: 0.857142857rem;
+	line-height: 2;
+}
+abbr,
+acronym,
+dfn {
+	border-bottom: 1px dotted #666;
+	cursor: help;
+}
+address {
+	display: block;
+	line-height: 1.714285714;
+	margin: 0 0 24px;
+	margin: 0 0 1.714285714rem;
+}
+del {
+	color: #333;
+}
+ins {
+	background: #fff9c0;
+	border: none;
+	color: #333;
+	text-decoration: none;
+}
+sup,
+sub {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+sup {
+	top: -0.5em;
+}
+sub {
+	bottom: -0.25em;
+}
+input[type="text"] {
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	font-family: inherit;
+	padding: 6px;
+	padding: 0.428571429rem;
+}
+textarea {
+	border: 1px solid #d5d2ca;
+	border-radius: 3px;
+	font-family: inherit;
+	font-size: 12px;
+	font-size: 0.857142857rem;
+	line-height: 1.714285714;
+	padding: 10px;
+	padding: 0.714285714rem;
+	width: 96%;
+}
+
+
+/* =Links
+-------------------------------------------------------------- */
+
+a,
+a em,
+a strong {
+	color: #21759b;
+	outline: none;
+}
+a:focus,
+a:active,
+a:hover {
+	color: #0f3647;
+}
+
+
+/* =Alignment
+-------------------------------------------------------------- */
+
+.alignleft {
+	display: inline;
+	float: left;
+	margin: 12px 24px 12px 0;
+	margin: 0.857142857rem 1.714285714rem 0.857142857rem 0;
+}
+.alignright {
+	display: inline;
+	float: right;
+	margin: 12px 0 12px 24px;
+	margin: 0.857142857rem 0 0.857142857rem 1.714285714rem;
+}
+.aligncenter {
+	clear: both;
+	display: block;
+	margin-top: 12px;
+	margin-top: 0.857142857rem;
+	margin-bottom: 12px;
+	margin-bottom: 0.857142857rem;
+}
+
+
+/* =Images
+-------------------------------------------------------------- */
+
+img,
+.editor-attachment {
+	border: 0;
+	border-radius: 3px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+	max-width: 100%;
+}
+img.size-full {
+	width: auto/9; /* Prevent stretching of full-size images in IE8 */
+}
+img[class*="wp-image-"] {
+	height: auto;
+	max-width: 100%;
+}
+img[class*="align"],
+img[class*="wp-image-"],
+img[class*="attachment-"] {
+	height: auto; /* Make sure images with WordPress-added height and width attributes are scaled correctly */
+}
+img.mceWPnextpage {
+	border-radius: 0;
+	box-shadow: none;
+}
+img.wp-smiley {
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+	margin-bottom: 0;
+	margin-top: 0;
+	padding: 0;
+}
+.wp-caption {
+	background: transparent;
+	border: none;
+	margin: 0;
+	padding: 4px;
+	text-align: left;
+}
+.wp-caption-dt {
+	margin: 0;
+}
+.wp-caption .wp-caption-text,
+.wp-caption-dd {
+	color: #757575;
+	font-style: italic;
+	font-size: 12px;
+	font-size: 0.857142857rem;
+	line-height: 2;
+	margin: 0 0 24px;
+	margin: 0 0 1.71429rem;
+}
+
+/**** movie info */
+
+body.thememovieinfo {
+  max-width: 600px;
+  padding: 27px;
+}
+.thememovieinfo a {
+  color:#609492;
+}
+.thememovieinfo a:hover {}
+.thememovieinfo a[href*="imdb"],
+.thememovieinfo a[href*="imdb"]:hover {
+  background: #656565;
+  color:#fff;
+  font-weight: bold;
+  font-style: italic;
+  padding: 1px 6px;
+  text-decoration: none;
+}
+.thememovieinfo a[href*="imdb"]:after {
+  content: " »"; /* &raquo; */
+}
+
+/* end */
