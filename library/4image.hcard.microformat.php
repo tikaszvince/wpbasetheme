@@ -25,7 +25,7 @@ A #hcard-4image background kép pontos elérhetőségéről gondoskodj
 	text-align:left;
 	text-transform:uppercase;
 	text-decoration:none;
-	background:transparent url(images/4image.18.png) no-repeat scroll 0 -20px;
+	background:transparent url(img/4image.18.png) no-repeat scroll 0 -20px;
 }
 
 #hcard-4image .url .a,
