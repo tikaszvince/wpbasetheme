@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 1);
 /************* INCLUDE NEEDED FILES ***************/
 // This has to be the first include so theme additionals could inject settings
 require_once('library/theme-admin.php');
