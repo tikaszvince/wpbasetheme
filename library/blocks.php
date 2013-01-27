@@ -277,5 +277,53 @@ function theme_shortcode_author_bio($atts) {
   return get_theme_author_bio($user->ID);
 }
 
+function theme_copyright_text() {
+  echo theme_get_copyright_text();
+}
+
+function theme_get_copyright_text() {
+  $options = get_option('theme_options');
+  $copy = $options['copyrightText'];
+  $replace = array(
+    'pattern' => array(),
+    'replace' => array(),
+  );
+  foreach ( theme_copyright_shortcodes() as $settings ) {
+    $replace['pattern'][] = '%'.$settings['pattern'].'%';
+    $replace['replace'][] = $settings['replace'];
+  }
+  return $copy = preg_replace($replace['pattern'], $replace['replace'], $copy);
+}
+
+function theme_copyright_shortcodes() {
+  $before = '{';
+  $after = '}';
+  $shortcodes = array();
+  $shortcodes['year'] = array(
+    'pattern' => $before.'year'.$after,
+    'replace' => date('Y'),
+    'description' => sprintf(__('%1$s: current year. e.g. %2$s'), "<b>{$before}year{$after}</b>", date('Y')),
+  );
+  $shortcodes['bloglink'] = array(
+    'pattern' => $before.'bloglink'.$after,
+    'replace' => '<a href="'.home_url().'" rel="nofollow">'.get_bloginfo('name').'</a>',
+    'description' => sprintf(__('%1$s: name of the blog as link to homepage'), "<b>{$before}bloglink{$after}</b>"),
+  );
+  $shortcodes['bloglink:text'] = array(
+    'pattern' => $before.'bloglink:([^'.$after.']+)'.$after,
+    'replace' => '<a href="'.home_url().'" rel="nofollow">$1</a>',
+    'description' => sprintf(__('%1$s: "text" as link to homepage'), "<b>{$before}bloglink:text{$after}</b>"),
+  );
+  return $shortcodes;
+}
+
+function _theme_copyright_shortcode_help() {
+  $return = array();
+  foreach ( theme_copyright_shortcodes() as $name => $settings ) {
+    $return[] = $settings['description'];
+  }
+  return $return;
+}
+
 
 //end
