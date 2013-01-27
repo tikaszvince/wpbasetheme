@@ -1,8 +1,8 @@
 <?php
 /************* INCLUDE NEEDED FILES ***************/
-require_once('library/4image.hcard.microformat.php');
 // This has to be the first include so theme additionals could inject settings
 require_once('library/theme-admin.php');
+require_once('library/4image.hcard.microformat.php');
 require_once('library/image-sizes.php');
 require_once('library/start.php');
 require_once('library/translation/translation.php');
