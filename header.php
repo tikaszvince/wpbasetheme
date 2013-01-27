@@ -50,7 +50,6 @@ remove_filter('language_attributes', 'fbcomments_schema');
         </a>
         <div class="nav-collapse">
           <?php theme_main_nav(); ?>
-          <?php theme_header_nav(); ?>
         </div>
       </div></div><!-- /.container /.navbar-inner -->
     </nav>

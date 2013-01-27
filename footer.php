@@ -11,11 +11,10 @@
         <?php theme_footer_links(); ?>
       </nav>
       <div class="source-org copyright">
-        Copyright &copy; <?php echo date('Y') ?>. <a href="<?php echo home_url(); ?>" rel="nofollow"><?php bloginfo('name') ?></a>
-        &middot; Minden jog fenntartva.
+        <?php theme_copyright_text() ?>
       </div>
 
-      <div class="fingerprint">
+      <div class="fingerprint clearfix">
         <?php fingerprint_4image() ?>
       </div>
     </section>
