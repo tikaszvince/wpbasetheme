@@ -106,36 +106,16 @@ function theme_scripts_and_styles() {
       $wp_scripts->add_data($handle, 'group', 1);
     }
 
-    wp_register_script('jquery','//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',array(),'1.8.3',true);
-    $_cssDirUri = get_stylesheet_directory_uri();
-    // modernizr (without media query polyfill)
-    wp_register_script('theme-modernizr', $_cssDirUri.'/library/js/libs/modernizr.custom.min.js', array(), '2.6.2', false);
-    // Bootstrap js
-    wp_register_script('bootstrap-js', $_cssDirUri.'/bootstrap/js/bootstrap.min.js', array('jquery'), '2.2.2', true);
+    theme_scripts::register();
     theme_styles::register();
-    // ie-only style sheet
-    wp_register_style('theme-ie-only', $_cssDirUri.'/library/css/ie.css', array(), '');
+
     // comment reply script for threaded comments
     if ( is_singular() && comments_open() && (get_option('thread_comments') == 1)) {
       wp_enqueue_script('comment-reply');
     }
 
-    //adding scripts file in the footer
-    wp_register_script('theme-js', $_cssDirUri.'/library/js/scripts.js', array('jquery'), '', true);
-
-    // enqueue styles and scripts
-    wp_enqueue_script('theme-modernizr');
     theme_styles::enqueue();
-    wp_enqueue_style('theme-ie-only');
-
-    /*
-    I recommend using a plugin to call jQuery
-    using the google cdn. That way it stays cached
-    and your site will load faster.
-    */
-    wp_enqueue_script('jquery');
-    wp_enqueue_script('bootstrap-js');
-    wp_enqueue_script('theme-js');
+    theme_scripts::enqueue();
   }
 }
 
