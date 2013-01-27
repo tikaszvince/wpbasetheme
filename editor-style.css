@@ -5,8 +5,7 @@ Description: Used to style the TinyMCE editor.
 
 /* =Tables
 -------------------------------------------------------------- */
-@import "bootstrap/css/bootstrap.min.css";
-@import "library/css/bootstrap-mods.css";
+@import "library/css/bootstrap.min.css";
 
 html {
 	font-size: 12px;
