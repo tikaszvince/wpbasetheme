@@ -3,6 +3,7 @@ ini_set('display_errors', 1);
 /************* INCLUDE NEEDED FILES ***************/
 // This has to be the first include so theme additionals could inject settings
 require_once('library/theme-admin.php');
+require_once('library/scripts-styles.php');
 require_once('library/4image.hcard.microformat.php');
 require_once('library/image-sizes.php');
 require_once('library/start.php');
