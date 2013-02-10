@@ -38,6 +38,24 @@ class Theme_Admin {
         )).'</li></ul>Current value:<br/>'.theme_get_copyright_text(),
       ),
     );
+
+    $stylesheet = get_stylesheet();
+    $theme_root_uri = get_theme_root_uri($stylesheet);
+    $optionList['staticBaseUrlTheme'] = array(
+      'label' => __('Base URL of theme static files','theme'),
+      'type' => 'input',
+      'value' => isset($options['staticBaseUrlTheme']) ? $options['staticBaseUrlTheme'] : $theme_root_uri.'/'.$stylesheet,
+      'description' => 'Default is <em>'.$theme_root_uri.'/'.$stylesheet.'</em>'
+    );
+
+    $uploads = wp_upload_dir();
+    $optionList['staticBaseUrlFiles'] = array(
+      'label' => __('Base URL of attached static files','theme'),
+      'type' => 'input',
+      'value' => isset($options['staticBaseUrlFiles']) ? $options['staticBaseUrlFiles'] : $uploads['baseurl'],
+      'description' => 'Default is <em>'.$uploads['baseurl'].'</em>'
+    );
+
     self::add_options($optionList);
   }
 
