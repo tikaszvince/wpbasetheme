@@ -1,6 +1,11 @@
 <?php
 add_action('after_setup_theme','theme_start', 15);
 
+// Change theme/plugin url to static domain
+add_filter('stylesheet_directory_uri', 'theme_stylesheet_directory_uri', 99, 3);
+add_filter('wp_get_attachment_image_attributes', 'theme_wp_get_attachment_image_attributes', 10, 2);
+add_filter('wp_get_attachment_url', 'theme_wp_get_attachment_url', 99, 2);
+
 function theme_start() {
   add_editor_style();
   // launching operation cleanup
@@ -277,4 +282,39 @@ function theme_get_category_list($post_id = 0) {
   return '';
 }
 
+function theme_stylesheet_directory_uri($stylesheet_dir_uri, $stylesheet, $theme_root_uri) {
+  $options = get_option('theme_options');
+  $_stUrl = rtrim($options['staticBaseUrlTheme'],'/');
+  if (!isset($_stUrl) || !$_stUrl || $_stUrl == $theme_root_uri.'/'.$stylesheet) {
+    return $stylesheet_dir_uri;
+  }
+  return $_stUrl;
+}
+
+function theme_wp_get_attachment_image_attributes($attr, $attachment) {
+  /** @var $attachment WP_Post */
+  $options = get_option('theme_options');
+  $_stUrl = rtrim($options['staticBaseUrlFiles'],'/');
+  if (isset($_stUrl) && $_stUrl) {
+    $dir = dirname(get_post_meta($attachment->ID, '_wp_attached_file', true));
+    $file = basename($attr['src']);
+    $attr['src'] = $_stUrl .'/' .$dir .'/'.$file;
+  }
+  return $attr;
+}
+
+function theme_wp_get_attachment_url($url, $postId) {
+  $options = get_option('theme_options');
+  $_stUrl = rtrim($options['staticBaseUrlFiles'],'/');
+  if (
+    !isset($_stUrl)
+    || !$_stUrl
+    || !($post = get_post($postId))
+    || $post->post_type !== 'attachment'
+    || !(($uploads = wp_upload_dir()) && false === $uploads['error'])
+  ) {
+    return $url;
+  }
+  return str_replace($uploads['baseurl'], $_stUrl, $url);
+}
 //end
